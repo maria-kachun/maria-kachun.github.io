@@ -5,23 +5,9 @@
     <title>My Web Site</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
-    <script type="text/javascript">
-      function displayNextImage() {
-        x = (x === images.length - 1) ? 0 : x + 1;
-        document.getElementById("img").src = images[x];
-      }
 
-      function changeImage() {
-        setInterval(displayNextImage, 200);
-      }
-
-      var images = [], x = -1;
-      images[0] = "img/1.jpg";
-      images[1] = "img/3.jpg";
-      images[2] = "img/2.jpg";
-    </script>
 </head>
-<body onload="changeImage()">
+<body>
 <div class='navbar' title='Menu'>
     <i class="fa fa-bars" aria-hidden="true"></i>
 </div>
@@ -31,7 +17,10 @@
 <div class="header">
     <h1>MARIA KACHUN</h1>
 </div>
-<img id="img" src="img/3.jpg"/>
+<div id="show-img">
+    <img />
+</div>
+
 <div id="navigationWrap">
     <div class="container nav-menu">
         <nav>
@@ -43,6 +32,47 @@
         </nav>
     </div>
 </div>
+<script type="text/javascript">
+  initImg('#show-img img', [
+    'img/2.jpg',
+    'img/1.jpg',
+    'img/3.jpg'
+  ]);
+
+  function initImg(selector, srcArr) {
+    const img = document.querySelector(selector);
+    Object.assign(img, {
+      buf: Object.assign(new Image(), { img }),
+      srcArr: [...srcArr],
+      changeInterval: 5e3,
+      bufIdx: 0,
+      change: function () {
+        this.style.animationName = 'img-in';
+        this.src = this.buf.src || this.nextImage();
+        this.buf.src = this.nextImage();
+      },
+      nextImage: function () {
+        this.bufIdx = ++this.bufIdx < this.srcArr.length ? this.bufIdx : 0;
+        return this.srcArr[this.bufIdx];
+      }
+    });
+    img.buf.addEventListener('load', loadHandler);
+    img.addEventListener('animationend', animEndHandler);
+    img.change();
+    return img;
+
+    function loadHandler() {
+      setTimeout(
+        () => this.img.style.animationName = 'img-out',
+        this.img.changeInterval
+      );
+    }
+    function animEndHandler({ animationName }) {
+      if (animationName === 'img-out')
+        this.change();
+    }
+  }
+</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
