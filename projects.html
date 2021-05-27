@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Draggable Menu with Grid Previews | Codrops</title>
+    <meta name="description" content="A draggable menu that shows a thumbnail preview of an image grid"/>
+    <meta name="keywords"
+          content="draggable, menu, navigation, thumbnails, grid, javascript, gsap, web design, layout"/>
+    <meta name="author" content="Codrops"/>
+    <link rel="stylesheet" href="https://use.typekit.net/crf4rue.css">
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>document.documentElement.className = "js";
+    var supportsCssVars = function () {
+      var e, t = document.createElement("style");
+      return t.innerHTML = "root: { --tmp-var: bold; }", document.head.appendChild(t), e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)")), t.parentNode.removeChild(t), e
+    };
+    supportsCssVars();</script>
+    <link rel="stylesheet" href="css/projects.css">
+</head>
+<body class="loading">
+<main>
+    <div class='navbar' title='Menu'>
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+    <div class="close">
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </div>
+    <section>
+        <div class="page page--preview">
+            <div class="grid-wrap">
+                <div class="grid grid--layout-1">
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/IMG_9948.JPG)"></div>
+                    </div>
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/IMG_9997.JPG)"></div>
+                    </div>
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/01.JPG)"></div>
+                    </div>
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/8.jpg)"></div>
+                    </div>
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/DSC_0524.jpg)"></div>
+                    </div>
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/IMG_9989.JPG)"></div>
+                    </div>
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/IMG_9987.jpg)"></div>
+                    </div>
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/IMG_7939.jpg)"></div>
+                    </div>
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/1.jpg)"></div>
+                    </div>
+                </div>
+                <div class="grid grid--layout-2">
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/IMG_9945.jpg)"></div>
+                    </div>
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/IMG_8086.JPG)"></div>
+                    </div>
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/photo1.jpg)"></div>
+                    </div>
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/photo3.jpg)"></div>
+                    </div>
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/IMG_8100.JPG)"></div>
+                    </div>
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/photo5.jpg)"></div>
+                    </div>
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/photo4.jpg)"></div>
+                    </div>
+                    <div class="grid__item-wrap">
+                        <div class="grid__item" style="background-image: url(img/IMG_9933.jpg)"></div>
+                    </div>
+                </div>
+
+                <button class="gridback">
+                    Back
+                </button>
+            </div>
+        </div>
+        <div class="menu-wrap">
+            <div class="menu-draggable"></div>
+            <nav class="menu">
+                <div class="menu__item">
+                    <a class="menu__item-link">Landscape</a>
+                    <a class="menu__item-explore">explore</a>
+                </div>
+                <div class="menu__item">
+                    <a class="menu__item-link">Safari girl</a>
+                    <a class="menu__item-explore">explore</a>
+                </div>
+            </nav>
+        </div>
+    </section>
+    <div id="navigationWrap">
+        <div class="container nav-menu">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</main>
+<div class="cursor">
+    <div class="cursor__inner cursor__inner--circle">
+        <div class="cursor__side cursor__side--left"></div>
+        <div class="cursor__side cursor__side--right"></div>
+    </div>
+</div>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/charming.min.js"></script>
+<script src="js/TweenMax.min.js"></script>
+<script src="js/draggabilly.pkgd.min.js"></script>
+<script src="js/demo.js"></script>
+<script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+<script src="js/navbar.js"></script>
+</body>
+</html>
